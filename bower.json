@@ -1,0 +1,10 @@
+{
+  "name": "muret",
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "holderjs": "~2.6.0",
+    "font-awesome": "~4.3.0",
+    "bootstrap3-typeahead": "bassjobsen/Bootstrap-3-Typeahead#master",
+    "tagsinput": "~0.4.2"
+  }
+}

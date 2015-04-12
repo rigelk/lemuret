@@ -1,0 +1,31 @@
+# Laravel
+#####################
+/vendor
+.env
+ 
+# Bower | Node
+######################
+/resources/assets/bower
+/node_modules
+
+# OS generated files
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+ 
+ 
+# Packages
+######################
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
