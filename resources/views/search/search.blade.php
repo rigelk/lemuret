@@ -2,7 +2,6 @@
 
 <link href="{{ asset('/css/search/search.css') }}" rel="stylesheet">
 <link href="{{{ asset('/css/bootstrap-tagsinput.css') }}}" rel="stylesheet">
-<link href="{{{ asset('/css/search/typeahead.css') }}}" rel="stylesheet">
 
 @section('content')
   <div class="container" id="containerS">
@@ -11,7 +10,7 @@
 	<form class="form" name="form">
 	  <div class="input-group">
 	    <div class="tagsinput-wrapper">
-	      <input id="search" name="search" type="text" class="form-control" value="{{ Input::get('search') }}" data-role="tagsinput" autofocus/>
+	      <input id="search" name="search" type="text" class="form-control" value="{{ Input::get('search') }}" data-provide="typeahead" data-role="tagsinput" autocomplete="off" autofocus/>
 	      <input type="hidden" name="serie"/>
 	    </div>
 	    <span class="input-group-btn">
@@ -107,41 +106,42 @@
       document.form.submit();
   }
   </script>
+  <script src="http://rawgit.com/twitter/typeahead.js/master/dist/bloodhound.min.js"></script>
   <script src="{{{ asset('/js/bootstrap3-typeahead.min.js') }}}" type="text/javascript"></script>
   <script src="{{{ asset('/js/vendor/bootstrap-tagsinput.min.js') }}}" type="text/javascript"></script>
   <script>
   jQuery(document).ready(function($) {
-    var engine = new Bloodhound({
-        remote: '/search/query?tags=%QUERY',
-        // '...' = displayKey: '...'
-        datumTokenizer: Bloodhound.tokenizers.whitespace('info_tags'),
-        queryTokenizer: Bloodhound.tokenizers.whitespace
-    });
+      var engine = new Bloodhound({
+          remote: '/search/query?tags=%QUERY',
+          // '...' = displayKey: '...'
+          datumTokenizer: Bloodhound.tokenizers.whitespace('info_tags'),
+          queryTokenizer: Bloodhound.tokenizers.whitespace
+      });
 
-    engine.initialize();
+      engine.initialize();
 
-    $("#search").tagsinput({
-	typeaheadjs: {
-	    item: 8,
-            hint: true,
-	    delay: 500,
-	    offset: false, // true = les suggestions doivent débuter par les caractères écrits
-	    accent: true, // true = case-insensitive
-	    compression: true,
-            highlight: true,
-            minLength: 2, // longueur minimale du mot considéré pour suggérer
-	    name: 'Tag_list',
-	    displayKey: 'info_tags',
-	    source: engine.ttAdapter(),
-	    templates: {
-		empty: [
-		    '<div class="empty-message">aucun <b>tag</b> correspondant</div>'
-		]
-	    }
-	}
-    });
+      $("#search").tagsinput({
+	  typeaheadjs: {
+	      item: 8,
+              hint: true,
+	      delay: 500,
+	      offset: false, // true = les suggestions doivent débuter par les caractères écrits
+	      accent: true, // true = case-insensitive
+	      compression: true,
+              highlight: true,
+              minLength: 2, // longueur minimale du mot considéré pour suggérer
+	      name: 'Tag_list',
+	      displayKey: 'info_tags',
+	      source: engine.ttAdapter(),
+	      templates: {
+		  empty: [
+		      '<div class="empty-message">aucun <b>tag</b> correspondant</div>'
+		  ]
+	      }
+	  }
+      });
 
-});
+  });
 
 
   </script>

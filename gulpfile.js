@@ -38,6 +38,7 @@ elixir(function(mix) {
 	'holderjs/holder.min.js'
     ], 'public/js/utilities.js', 'resources/assets/bower'); // #1 = liste des sources, #2 = destination, #3 = source
     mix.copy([
+	'resources/assets/bower/typeahead.js/dist/bloodhound.min.js',
 	'resources/assets/bower/bootstrap3-typeahead/bootstrap3-typeahead.min.js'
     ], 'public/js'); // #1 = liste des sources, #2 = destination
 

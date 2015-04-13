@@ -5,6 +5,7 @@
     "holderjs": "~2.6.0",
     "font-awesome": "~4.3.0",
     "bootstrap3-typeahead": "bassjobsen/Bootstrap-3-Typeahead#master",
-    "tagsinput": "~0.4.2"
+    "tagsinput": "~0.4.2",
+    "typeahead.js": "~0.10.5"
   }
 }

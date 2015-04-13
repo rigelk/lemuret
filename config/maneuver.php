@@ -38,10 +38,10 @@ return array(
 
         'development' => array(
             'scheme'    => 'ftp',
-            'host'      => 'yourdevserver.com',
-            'user'      => 'user',
-            'pass'      => 'myawesomepass',
-            'path'      => '/path/to/server/',
+            'host'      => 'ftp.lemuret.esy.es',
+            'user'      => 'u160083918',
+	    'pass'      => 'gvk~AsgA9r',
+            'path'      => 'public_html',
             'port'      => 21,
             'passive'   => true
         ),
