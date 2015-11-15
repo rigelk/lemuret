@@ -2,6 +2,7 @@
 
 use App\User;
 use DB;
+use Auth;
 
 class ProfileController extends Controller {
 
@@ -34,6 +35,9 @@ class ProfileController extends Controller {
      */
     public function showProfile($id)
     {
+	if($this->IfNotSelf($id)) // true if not self and not authorised
+	    return redirect()->back(); // redirect if true
+	    
 	if(($user = User::find($id)) != null){
 	    $profil = DB::table('users')
 		->join('user_info', 'users.id', '=', 'user_info.iduser_info')
@@ -57,5 +61,13 @@ class ProfileController extends Controller {
     {
 	return view('search.map');
     }
-    
+
+    public function IfNotSelf($id) // vrai si besoin d’une redirection :-)
+    {
+	if ((!Auth::user()->can('view.search')) && (Auth::user()->id != $id)){
+	    return true;
+	} else {
+	    return false;
+	}
+    }
 }

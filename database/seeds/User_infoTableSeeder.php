@@ -30,13 +30,16 @@ class User_infoTableSeeder extends Seeder {
 	for ($i=0; $i < 30; $i++) {
 	    $key_work = array_rand($work_list);
 	    $key_serie = array_rand($serie_list);
+	    //$json = 'http://api.randomuser.me/';
+	    //$jsonfile = file_get_contents($json);
 	    $info = array(
 		'iduser_info' => null,
 		    'info_lieu' => $faker->city,
 		    'info_gps' => $faker->latitude.','.$faker->longitude,
 		    'info_poste' => ucwords(strtolower(explode('=',$metiers[array_rand($metiers)])[1])),
 		    'info_promo' => $faker->year,
-		    'info_promo_type' => $serie_list[$key_serie]
+		    'info_promo_type' => $serie_list[$key_serie],
+		    // 'info_image' => file_get_contents(json_decode($jsonfile)->{'results'}[0]->{'user'}->{'picture'}->{'medium'})
 	    );
 	    $infos[] = $info;
 	}

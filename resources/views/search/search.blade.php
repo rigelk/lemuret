@@ -10,7 +10,7 @@
 	<form class="form" name="form">
 	  <div class="input-group">
 	    <div class="tagsinput-wrapper">
-	      <input id="search" name="search" type="text" class="form-control" value="{{ Input::get('search') }}" data-provide="typeahead" data-role="tagsinput" autocomplete="off" autofocus/>
+	      <input id="search" name="search" type="text" class="form-control" value="{{ Input::get('search') }}" data-role="tagsinput" autocomplete="off" autofocus/>
 	      <input type="hidden" name="serie"/>
 	    </div>
 	    <span class="input-group-btn">

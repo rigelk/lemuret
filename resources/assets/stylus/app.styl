@@ -1,13 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Cabin+Sketch);
-
-@font-face
-	font-family Neou
-	font-style normal
-	src url(fonts/neou/Neou-Thin.ttf)
-
-$font = sans-serif
-$font-title = Neou, Lato, "Lucida Grande", sans-serif
-$font-cursive = 'Cabin Sketch', cursive
+@import fonts
+@import requires
 
 body, label, .checkbox label, .dropdown-menu li a
 	font-family $font
@@ -15,6 +7,11 @@ body, label, .checkbox label, .dropdown-menu li a
 
 h1
 	font-weight 400
-
-a, a:focus, a:active
-	outline none
+	
+a, a:active, a:focus, :focus
+	-webkit-appearance transparent
+	outline transparent !important
+	
+@media print
+	footer 
+		page-break-after always

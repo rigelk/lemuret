@@ -5,14 +5,13 @@
     <link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
 
     <link href="{{{ asset('/css/foundation.css') }}}" rel="stylesheet">
-    <link href="{{{ asset('/css/style.css') }}}" rel="stylesheet">
-    <link href="{{{ asset('/css/bootstrap-tagsinput.css') }}}" rel="stylesheet">
+    <link href="{{{ asset('/css/home.css') }}}" rel="stylesheet">
     <link href="{{{ asset('/css/search/typeahead.css') }}}" rel="stylesheet">
   </head>
-  <body style="background-image: url('img/default.jpg')">
-    <div class="cover black" data-color="black"></div>
+  <body style="background-image: url('img/muret{{ Auth::guest() ? '2' : '' }}.jpg')">
+    <div class="cover black"></div>
     <div class="container">
-      
+      @include('flash::message')
       <div class="row iconrow">
 	
 	<div class="right navicon">
@@ -27,6 +26,9 @@
 		      <div class="triangle"></div>
 		      <ul>
 			<li><a href="{{ url('/profile').'/' }}{{ Auth::user()->id }}"> Profil</li></a>
+			@if (Auth::user()->isAdmin())
+			  <li><a href="{{ url('/admin') }}"> Administration</li></a>
+			@endif
 			<li><a href="{{ url('/messages') }}">Messages <span class="alert radius label">2</a></li>
 			  <li><a href="{{ url('/auth/logout') }}">Se déconnecter</a></li>
 		      </ul>
@@ -41,11 +43,7 @@
       
       <div class="content">
 	<div class="title">Le Muret</div>
-	@if (!Auth::guest())
-	  <div class="quote">On trouve toujours qui on cherche au muret</div>
-	@else
 	  <div class="quote">Le réseau professionnel des anciens élèves de la Perverie</div>
-	@endif
 	{{-- <div class="quote">{{ Inspiring::quote() }}</div> --}}
       </div>
       <div id="landing" class="row">
@@ -59,7 +57,7 @@
 		<div class="small-centered columns">
 		  <div class="row collapse">
 		    <div id="search" class="small-8 large-7 small-centered columns">
-		      <input class="typeahead" type="text" name="search" placeholder="" autofocus/>
+		      <input class="typeahead" type="text" name="search" placeholder="On trouve toujours qui on cherche au Muret…" autofocus/>
 		    </div>
 		    <div class="small-4 small-centered large-centered columns">
 		      <div class="small-5 columns">
@@ -105,25 +103,31 @@ jQuery(document).ready(function($) {
 
     engine.initialize();
 
-    $("#search").tagsinput({
-	typeaheadjs: {
-	    item: 8,
-            hint: true,
-	    delay: 500,
-	    offset: false, // true = les suggestions doivent débuter par les caractères écrits
-	    accent: true, // true = case-insensitive
-	    compression: true,
-            highlight: true,
-            minLength: 2, // longueur minimale du mot considéré pour suggérer
-	    name: 'Tag_list',
-	    displayKey: 'info_tags',
-	    source: engine.ttAdapter(),
-	    templates: {
-		empty: [
-		    '<div class="empty-message">aucun <b>tag</b> correspondant</div>'
-		]
-	    }
+    $("#search .typeahead").typeahead({
+	item: 8,
+        hint: true,
+	delay: 500,
+	offset: false, // true = les suggestions doivent débuter par les caractères écrits
+	accent: true, // true = case-insensitive
+	compression: true,
+        highlight: true,
+        minLength: 2, // longueur minimale du mot considéré pour suggérer
+	matcher: function (item) {
+	    if (item.toLowerCase().indexOf(this.query.toLowerCase()) == 0) {
+                return ~item.toLowerCase().indexOf(this.query.toLowerCase());
+            } 
 	}
+    }, {
+        source: engine.ttAdapter(),
+        // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
+        name: 'Tag_list',
+        // the key from the array we want to display (name,id,email,etc...)
+        displayKey: 'info_tags',
+        templates: {
+            empty: [
+                '<div class="empty-message">aucun <b>tag</b> correspondant</div>'
+            ]
+        }
     });
 
 });

@@ -1,20 +1,18 @@
 <html>
   <head>
     <title>Le Muret</title>
-    
-    <link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
 
-    <link href="{{{ asset('/css/foundation.css') }}}" rel="stylesheet">
-    <link href="{{{ asset('/css/style.css') }}}" rel="stylesheet">
+    <link href="{{{ asset('/css/vendor.css') }}}" rel="stylesheet">
+    <link href="{{{ asset('/css/home.css') }}}" rel="stylesheet">
     <link href="{{{ asset('/css/search/typeahead.css') }}}" rel="stylesheet">
   </head>
-  <body style="background-image: url('img/default.jpg')">
-    <div class="cover black" data-color="black"></div>
-    <div class="container">
-      
-      <div class="row iconrow">
-	
-	<div class="right navicon">
+  <body style="background-image: url('img/muret{{ Auth::guest() ? '2' : '' }}.jpg')">
+    <div class="cover black"></div>
+    <div id="home-landing" class="container">
+
+      <div class="row col-xs-12">
+
+	<div class="navicon col-xs-6 col-lg-4 col-xs-push-6 col-lg-push-8">
 	  @if (!Auth::guest())
 	    <img src="img/avatar@2x.png" alt="Photo de profil">
 	    <div id="menu">
@@ -26,7 +24,10 @@
 		      <div class="triangle"></div>
 		      <ul>
 			<li><a href="{{ url('/profile').'/' }}{{ Auth::user()->id }}"> Profil</li></a>
-			<li><a href="{{ url('/messages') }}">Messages <span class="alert radius label">2</a></li>
+			@if (Auth::user()->isAdmin())
+			  <li><a href="{{ url('/admin') }}">Administration</li></a>
+			@endif
+			<li><a href="{{ url('/messages') }}">Messages <label class="label label-danger">2</label</a></li>
 			  <li><a href="{{ url('/auth/logout') }}">Se déconnecter</a></li>
 		      </ul>
 		    </div>
@@ -39,53 +40,58 @@
       </div>
       
       <div class="content">
+      	@include('flash::message')
 	<div class="title">Le Muret</div>
-	@if (!Auth::guest())
-	  <div class="quote">On trouve toujours qui on cherche au muret</div>
-	@else
-	  <div class="quote">Le réseau professionnel des anciens élèves de la Perverie</div>
-	@endif
+	<div class="quote">Le réseau professionnel des anciens élèves de la Perverie</div>
 	{{-- <div class="quote">{{ Inspiring::quote() }}</div> --}}
-      </div>
-      <div id="landing" class="row">
-	<div class="large-centered text-center">
-	  {{-- <a href="index.html"><img class="logo" src="img/logo.jpg"/></a>  --}}
-	</div>
+
 	@if (!Auth::guest())
-	  <div class="large-centered text-center">
+	  <div class="row">
 	    <form action="{{ url('/search') }}" method="get">
-	      <div class="row text-center">
-		<div class="small-centered columns">
-		  <div class="row collapse">
-		    <div id="search" class="small-8 large-7 small-centered columns">
-		      <input class="typeahead" type="text" name="search" placeholder="" autofocus/>
-		    </div>
-		    <div class="small-4 small-centered large-centered columns">
-		      <div class="small-5 columns">
-			<button type="submit" class="button postfix">Go!</button>
-		      </div>
-		      <div class="small-5 columns">
-			<a href="{{ url('/map') }}" class="button postfix">Voir la carte</a>
-		      </div>
-		    </div>
-		  </div>
+	      <div class="row">
+		<div id="search" class="col-sm-12">
+		  <input style="width:90%" type="text" name="search" placeholder="On trouve toujours qui on cherche au Muret…" autofocus/>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1">
+		  <button type="submit" class="btn btn-primary btn-lg">Go!</button>
+		  <a href="{{ url('/map') }}" class="btn btn-primary btn-lg">Voir la carte</a>
 		</div>
 	      </div>
 	    </form>
 	  </div>
 	@else
 	  <div class="row">
-	    <div class="large-6 large-centered columns">
-	      <ul class="button-group radius even-3">
-		<li><a href="{{ url('/auth/login') }}" class="button">Se connecter</a></li>
-		<li><a href="{{ url('/auth/register') }}" class="button">S’inscrire</a></li>
-	      </ul>
+	    <div class="col-sm-12 col-lg-6 col-lg-offset-3">
+	      <div class="ui-group-buttons">
+		<link class="rippleJS" />
+                <a href="{{ url('/auth/login') }}" role="button" class="btn btn-primary btn-lg">Se connecter</a>
+                <div class="or or-lg"></div>
+                <a href="{{ url('/auth/register') }}" role="button" class="btn btn-primary btn-lg">en savoir plus</a>
+            </div>
 	    </div>
 	  </div>
 	@endif
+
       </div>
+      <div id="landing" class="row">
+	<div class="large-centered text-center">
+	  {{-- <a href="index.html"><img class="logo" src="img/logo.jpg"/></a>  --}}
+	</div>
+	
+      </div>
+
     </div>
     @include('footer')
+    <div class="container">
+    <div class="fake-browser-ui">
+      <div class="frame">
+    	<span></span>
+    	<span></span>
+    	<span></span>
+      </div>
+      Damn
+    </div>
+    </div>
   </body>
 </html>
 
@@ -93,6 +99,7 @@
 <script src="{{{ asset('/js/foundation.min.js') }}}" type="text/javascript"></script>
 <script src="{{{ asset('/js/vendor/typeahead.bundle.js') }}}" type="text/javascript"></script>
 <script src="{{{ asset('/js/vendor/bootstrap-tagsinput.min.js') }}}" type="text/javascript"></script>
+<script src="{{{ asset('/js/jquery.scrolly.js') }}}" type="text/javascript"></script>
 <script>
 jQuery(document).ready(function($) {
     var engine = new Bloodhound({
@@ -104,7 +111,7 @@ jQuery(document).ready(function($) {
 
     engine.initialize();
 
-    $("#search .typeahead").typeahead({
+    $("").typeahead({
 	item: 8,
         hint: true,
 	delay: 500,
@@ -131,6 +138,6 @@ jQuery(document).ready(function($) {
         }
     });
 
+    $('.parallax').scrolly({bgParallax: true});
 });
-
 </script>

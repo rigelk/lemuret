@@ -1,0 +1,316 @@
+@import app
+
+.fullWidth
+	margin-left auto
+	margin-right auto
+	max-width initial
+	width 100%
+
+#search
+	padding-bottom 20px
+
+#map_canvas
+	height 100%
+	width 100%
+	
+/* ------ Titre de la page d’accueil ----- */
+.title
+	font-family $font-title
+	font-size 106px
+
+.quote
+	font-family $font-subtitle
+	font-size 24px
+	position relative
+	top -20px
+
+/* Welcome Page CSS */
+body
+	color #D6DFE4
+	display table
+	font-family 'Lato', $font
+	font-weight 100
+	height 100%
+	margin 0
+	padding 0
+	width 100%
+
+	@media only screen
+		background no-repeat
+		background-position 50%
+		background-size cover
+		margin 0 auto
+
+.container
+	display table-cell
+	text-align center
+	vertical-align middle
+	height 100vh
+	width 100vh
+
+.content
+	display inline-block
+	text-align center
+
+/*---------- Wrapper déroulant --------*/
+.iconrow
+	min-width 100%
+	position absolute
+	top 50px
+
+.navicon
+	> img
+		float left
+		max-height 50px
+		position relative
+	#menu
+		float left
+		font-family $font
+		line-height 55px
+		margin 1px 50px 0 0
+		position relative
+		#titleMenu
+			color lightgray
+			font-family $font
+			line-height 55px
+		> ul
+			margin-left 0
+			
+ul
+	text-align center
+	li
+		-moz-transition padding .05s linear
+		-ms-transition padding .05s linear
+		-o-transition padding .05s linear
+		-webkit-transition padding .05s linear
+		cursor pointer
+		font 13px $font
+		transition padding .05s linear
+		&.drop
+			position relative
+		&:hover
+			a
+				color gray
+			.dropdownContain
+				top 50px
+			.underline
+				border-bottom-color #777
+			.dropOut
+				margin-top 8px
+				opacity 1
+		#titleMenu
+			-moz-transition all .1s ease-out
+			-ms-transition all .1s ease-out
+			-o-transition all .1s ease-out
+			-webkit-transition all .1s ease-out
+			color #777
+			height 80px
+			line-height 80px
+			padding 0 20px
+			transition all .1s ease-out
+		a
+			&:hover
+				color darkgray
+	> li
+		display inline-block
+	.dropOut
+		float left
+		padding 10px 0
+
+.dropdownContain
+	left 50%
+	margin-left -80px
+	position absolute
+	width 150px
+	z-index 2
+	/* half of width */
+
+.dropOut
+	-moz-border-radius 4px
+	-moz-box-shadow 0 1px 6px rgba(0, 0, 0, .15)
+	-moz-transition all .1s ease-out
+	-ms-transition all .1s ease-out
+	-o-transition all .1s ease-out
+	-webkit-border-radius 4px
+	-webkit-box-shadow 0 1px 6px rgba(0, 0, 0, .15)
+	-webkit-transition all .1s ease-out
+	background white
+	border-radius 4px
+	box-shadow 0 1px 6px rgba(0, 0, 0, .15)
+	float left
+	margin-top 0
+	opacity 0
+	position relative
+	transition opacity .1s ease-out
+	width 160px
+	.triangle
+		border-bottom 8px solid white
+		border-left 8px solid transparent
+		border-right 8px solid transparent
+		height 0
+		left 50%
+		margin-left -8px
+		position absolute
+		top -8px
+		width 0
+
+.dropOut ul li
+	-moz-border-radius 4px
+	-moz-transition background .1s ease-out
+	-ms-transition background .1s ease-out
+	-o-transition background .1s ease-out
+	-webkit-border-radius 4px
+	-webkit-transition background .1s ease-out
+	border-radius 4px
+	color #777
+	float left
+	padding 12px 0 10px 15px
+	text-align left
+	transition background .1s ease-out
+	width 125px
+	&:hover
+		background #f6f6f6
+
+/* remember to highlight inserts somehow! */
+ins
+	text-decoration none
+del
+	text-decoration line-through
+	
+/* tables still need 'cellspacing="0"' in the markup */
+table
+	border-collapse collapse
+	border-spacing 0
+
+
+/* Couverture (filtre sur l’image de fond) */
+.cover
+	background-color rgba(0, 0, 0, .6)
+	height 100%
+	left 0
+	opacity 1
+	position fixed
+	top 0
+	width 100%
+	z-index -1
+	&.red
+		background-color rgba(35, 3, 2, .66)
+	&.black
+		background-color rgba(0, 0, 0, .6)
+	&.blue
+		background-color rgba(5, 31, 60, .6)
+	&.green
+		background-color rgba(3, 28, 7, .6)
+	&.orange
+		background-color rgba(37, 28, 5, .6)
+
+.blur
+	opacity 0
+
+footer
+	bottom 10px
+	font 12px $font
+	opacity .3
+	position absolute
+	right 10px
+
+.ui-group-buttons
+	display inline-block
+	vertical-align middle
+	.or
+		float left
+		font-size 12px
+		height 1.3em
+		position relative
+		width .3em
+		z-index 3
+		&:before
+			-moz-box-sizing border-box
+			-ms-box-sizing border-box
+			-webkit-box-shadow 0 0 0 1px rgba(0, 0, 0, .1)
+			-webkit-box-sizing border-box
+			background-color #5a5a5a
+			border-radius 500px
+			box-shadow 0 0 0 1px rgba(0, 0, 0, .1)
+			box-sizing border-box
+			color #fff
+			content 'ou'
+			font-style normal
+			font-weight 400
+			height 1.8em
+			left 50%
+			line-height 1.55
+			margin-left -.9em
+			margin-top -.1em
+			position absolute
+			text-align center
+			top 50%
+			width 1.8em
+		&:after
+			background-color rgba(0, 0, 0, 0)
+			border-bottom .6em solid #5a5a5a
+			border-top .6em solid #5a5a5a
+			content ' '
+			height 2.84em
+			left 0
+			position absolute
+			top 0
+			width .3em
+		&.or-lg
+			font-size 16px
+			height 1.3em
+			&:after
+				height 2.85em
+		&.or-sm
+			height 1em
+			&:after
+				height 2.5em
+		&.or-xs
+			height .25em
+			&:after
+				height 1.84em
+				z-index -1000
+	&:after
+		clear both
+		content "."
+		display block
+		height 0
+		visibility hidden
+	.btn
+		border-radius 0
+		float left
+		&:first-child
+			border-bottom-left-radius .25em
+			border-top-left-radius .25em
+			margin-left 0
+			padding-right 15px
+		&:last-child
+			border-bottom-right-radius .25em
+			border-top-right-radius .25em
+			padding-left 15px
+
+
+.fake-browser-ui
+	background #ddd
+	border-bottom 2px solid #ccc
+	border-radius 3px
+	display inline-block
+	line-height 0
+	padding 20px 0 0
+	position relative
+	width 100%
+	height 200px
+	.frame
+		display block
+		height 15px
+		left 1px
+		position absolute
+		top 5px
+	span
+		background-color #eee
+		border 1px solid #dadada
+		border-radius 8px
+		float left
+		height 8px
+		margin 0 0 0 4px
+		width 8px

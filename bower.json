@@ -6,6 +6,10 @@
     "font-awesome": "~4.3.0",
     "bootstrap3-typeahead": "bassjobsen/Bootstrap-3-Typeahead#master",
     "tagsinput": "~0.4.2",
-    "typeahead.js": "~0.10.5"
+    "typeahead.js": "~0.10.5",
+    "adminlte": "~2.0.5",
+    "pace": "~1.0.2",
+    "chartjs": "master",
+    "vanilla-ripplejs": "~1.0.1"
   }
 }

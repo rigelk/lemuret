@@ -85,7 +85,7 @@ class SearchController extends Controller {
 	/* Sélecteur principal de vues */
 	if($profils->get()) {
 	    $profils = $profils->paginate(15); // on get(), mais avec de la pagination :)
-	    $options['profils'] = $profils;
+	    $options['profils'] = $profils->appends(Input::except('page')); // le append permet d’avoir une pagination correcte (sans perdre le fil :)
 	    return view('search.search', $options);
 	} else {
 	    return view('search.empty');

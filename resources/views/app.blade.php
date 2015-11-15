@@ -10,9 +10,6 @@
       <link href="{{ asset('/css/vendor.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
       
-      <!-- Fonts -->
-      <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
-
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
       <!--[if lt IE 9]>
@@ -56,6 +53,9 @@
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ substr(Auth::user()->prenom, 0, 20) }} {{ Auth::user()->name[0] }}. <span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
 		  <li><a href="{{ url('/profile').'/' }}{{ Auth::user()->id }}"> Profil</li></a>
+		  @if (Auth::user()->isAdmin())
+			  <li><a href="{{ url('/admin') }}"> Administration</li></a>
+		  @endif
 		  <li><a href="{{ url('/messages') }}">Messages <span class="label label-danger">2</span></a></li>
 		  <li><a href="{{ url('/auth/logout') }}">Déconnexion</a></li>
 		</ul>

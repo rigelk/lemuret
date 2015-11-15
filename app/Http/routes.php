@@ -15,25 +15,20 @@ $router->pattern('id', '[0-9]+');
 $router->pattern('name', '[A-Za-z]+');
 
 Route::get('/', 'WelcomeController@index');
-
 Route::get('home', 'HomeController@index');
+Route::get('/messages', 'MessagesController@showMessages');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
 
-Route::get('/search', 'SearchController@index');
-Route::get('/search/query', 'SearchController@query');
-
-Route::get('/map', 'SearchController@map');
-
-Route::get('/profile/{id}', ['uses' => 'ProfileController@showProfile']);
-
-Route::get('/messages', 'MessagesController@showMessages');
-
-Route::get('/auth/login/{provider?}', 'Auth\AuthController@login');
-
-Route::get('test', function(){
-    return "<pre>" . print_r(Input::all(), true) . "</pre>";
+Route::group(['permissions' => ['view.search']], function(){
+    Route::get('/search', 'SearchController@index');
+    Route::get('/search/query', 'SearchController@query');
+    Route::get('/map', 'SearchController@map');
+    
+    Route::group(['except' => ['self']], function(){
+	Route::get('/profile/{id}', 'ProfileController@showProfile');
+    });
 });

@@ -1,14 +1,16 @@
 <?php namespace App;
 
+use SleepingOwl\Models\SleepingOwlModel;
+use Caffeinated\Shinobi\Traits\ShinobiTrait;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
+class User extends SleepingOwlModel implements AuthenticatableContract, CanResetPasswordContract {
 
-    use Authenticatable, CanResetPassword;
+    use Authenticatable, CanResetPassword, ShinobiTrait;
 
     /**
      * The database table used by the model.
@@ -25,6 +27,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $fillable = ['name', 'prenom', 'email', 'password'];
 
     /**
+     * The attributes that protected against exterior modification.
+     *
+     * @var array
+     */
+    protected $guarded = ['id'];
+    
+    /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
@@ -34,42 +43,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function tagArray()
     {
 	return $this->hasMany('App\Tag', 'id', 'id')->select('info_tags')->distinct()->get()->toArray();
-    }
-
-    public function role()
-    {
-	return $this->hasOne('App\Role', 'id', 'role_id');
-    }
-
-    public function hasRole($roles)
-    {
-	$this->have_role = $this->getUserRole();
-
-	// Check if the user is a root account
-	if($this->have_role->name == 'Root') {
-	    return true;
-	}
-
-	if(is_array($roles)){
-	    foreach($roles as $need_role){
-		if($this->checkIfUserHasRole($need_role)) {
-		    return true;
-		}
-	    }
-	} else{
-	    return $this->checkIfUserHasRole($roles);
-	}
-	return false;
-    }
-
-    private function getUserRole()
-    {
-	return $this->role()->getResults();
-    }
-
-    private function checkIfUserHasRole($need_role)
-    {
-	return (strtolower($need_role)==strtolower($this->have_role->name)) ? true : false;
     }
 
 }
