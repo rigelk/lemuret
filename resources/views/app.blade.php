@@ -8,6 +8,7 @@
       <title>Le Muret</title>
 
       <link href="{{ asset('/css/vendor.css') }}" rel="stylesheet">
+      <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
       
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -72,7 +73,7 @@
     <link href="{{ asset('/css/bootstrap-tokenfield.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/bootstrap-social.css') }}" rel="stylesheet">
     <script src="{{ asset('/js/vendor/bootstrap-tokenfield.min.js') }}"></script>
-
+    
     @yield('content')
 
     @section('js')

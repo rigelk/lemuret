@@ -21,6 +21,7 @@ var imageop = require('gulp-image-optimization');
 */// CONFIGURATION D’ELIXIR
 
 elixir.config.sourcemaps = false;
+elixir.config.registerWatcher("default", "resources/**");
 
 /*
   |
@@ -30,29 +31,8 @@ elixir.config.sourcemaps = false;
   |
 */
 
-gulp.task('default', ['images'], function() {
-    elixir(function(mix) {
-	mix.bower();
-	
-	mix.stylus('app.styl');
-	mix.stylus('home.styl');
-	mix.stylus('admin.data.styl');
-	mix.cssmin();
-	
-	mix.scripts([
-	    'jquery/dist/jquery.min.js',
-	    'bootstrap/dist/js/bootstrap.min.js',
-	], 'public/js/vendor.js', 'resources/assets/bower'); // #1 = liste des sources, #2 = destination, #3 = source
-	mix.scripts([
-	    'holderjs/holder.min.js'
-	], 'public/js/utilities.js', 'resources/assets/bower'); // #1 = liste des sources, #2 = destination, #3 = source
-	mix.copy([
-	    'resources/assets/bower/typeahead.js/dist/bloodhound.min.js',
-	    'resources/assets/bower/bootstrap3-typeahead/bootstrap3-typeahead.min.js',
-	    'resources/assets/bower/chartjs/Chart.min.js',
-	    'resources/assets/js/',
-	], 'public/js'); // #1 = liste des sources, #2 = destination
-
+gulp.task('default', ['images','cots'], function() {
+    elixir(function(mix) {	
 	mix.serve({
 	    port: 8000,
 	    hostname: 'localhost'
@@ -65,14 +45,8 @@ gulp.task('default', ['images'], function() {
 		notify          : false
 	    });
     });
-
 });
 
-gulp.task('serve', ['default'], function(){
-    elixir(function(mix) {
-	
-    });
-});
 
 gulp.task('upload', ['default'], function(){
     process.stdout.write('Transfert de fichiers vers Hostinger...\n');
@@ -104,3 +78,42 @@ gulp.task('images', function(cb) {
         interlaced: true
     })).pipe(gulp.dest('public/img')).on('end', cb).on('error', cb);
 });
+
+gulp.task('bower', function(){
+    elixir(function(mix) {
+	mix.bower();
+    });
+});
+
+
+gulp.task('stylus', ['bower'], function(){
+    elixir(function(mix) {
+	// stylus compiling doesn’t work - use rather:
+	// stylus --watch resources/assets/stylus/ --out public/css/	
+	mix.stylus();
+	mix.styles([
+	    'bootstrap/dist/css/bootstrap.min.css'
+	], 'public/js/bootstrap.min.css', 'resources/assets/bower');
+	mix.cssmin();
+    });
+});
+
+gulp.task('js', function(){
+    elixir(function(mix) {
+	mix.scripts([
+	   'jquery/dist/jquery.min.js',
+	   'bootstrap/dist/js/bootstrap.min.js',
+	], 'public/js/vendor.js', 'resources/assets/bower'); // #1 = liste des sources, #2 = destination, #3 = source
+	mix.scripts([
+	   'holderjs/holder.min.js'
+	], 'public/js/utilities.js', 'resources/assets/bower'); // #1 = liste des sources, #2 = destination, #3 = source
+	mix.copy([
+	    'resources/assets/bower/typeahead.js/dist/bloodhound.min.js',
+	    'resources/assets/bower/bootstrap3-typeahead/bootstrap3-typeahead.min.js',
+	    'resources/assets/bower/chartjs/Chart.min.js',
+	    'resources/assets/js/',
+	], 'public/js'); // #1 = liste des sources, #2 = destination
+    });
+});
+
+gulp.task('cots', ['bower', 'stylus', 'js']);

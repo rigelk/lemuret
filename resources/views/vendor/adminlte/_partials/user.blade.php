@@ -14,13 +14,13 @@
         <li class="user-header">
           <p>
             {{ Auth::user()->prenom }} {{ Auth::user()->name }}
-            <small>Membre depuis le {{ $user->created_at->format('d F Y') }}</small>
+            <small>Membre depuis le {{ Auth::user()->created_at->format('d F Y') }}</small>
           </p>
         </li>
         <!-- Menu Footer-->
         <li class="user-footer">
           <div class="pull-left">
-            <a href="{{ url('/profile/'.Auth::user()->id) }}" class="btn btn-default btn-flat">Profil</a>
+            <a href="{{ url('/profile/'.Auth::id()) }}" class="btn btn-default btn-flat">Profil</a>
           </div>
           <div class="pull-right">
             <a href="{{ Admin::instance()->router->routeToAuth('logout') }}" class="btn btn-default btn-flat">Déconnexion <i class="fa fa-sign-out"></i></a>

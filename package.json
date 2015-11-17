@@ -1,6 +1,7 @@
 {
   "private": true,
   "devDependencies": {
+    "browserify": "^12.0.1",
     "grunt": "^0.4.5",
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-less": "^1.0.0",
@@ -9,8 +10,10 @@
     "grunt-phpunit": "^0.3.6",
     "gulp": "^3.8.8",
     "gulp-elixir-cssmin": "0.0.2",
+    "gulp-if": "^2.0.0",
     "gulp-image-optimization": "^0.1.3",
     "gulp-uncss": "^1.0.1",
+    "http-browserify": "^1.7.0",
     "laravel-elixir": "*",
     "laravel-elixir-browsersync": "^0.1.0",
     "laravel-elixir-clean": "^0.1.1",

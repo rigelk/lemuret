@@ -31,7 +31,7 @@
 	      <div class="progress-bar" style="width: 0%;"></div>
 	    </div>
 	    <span class="pull-right">
-	      Gérer l’occupation <i class="fa fa-long-arrow-right"></i>
+	      <a style="color:black;" href="{{ url('/admin/database') }}">Gérer l’occupation <i class="fa fa-long-arrow-right"></i></a>
 	    </span>
 	  </div><!-- /.info-box-content -->
 	</div><!-- /.info-box -->
@@ -65,7 +65,7 @@
 	    </div><!-- /.box-tools -->
 	  </div><!-- /.box-header -->
 	  <div class="box-body">
-	    <p>Les utilisateurs suivants se sont inscrits d’eux-mêmes et doivent être vérifiés en tant que véritables anciens élève de votre établissement.</p>
+	    <p>Les utilisateurs suivants se sont inscrits d’eux-mêmes et doivent être vérifiés en tant que véritables anciens élèves de votre établissement.</p>
 	    <table class="table table-condensed">
 	      <thead>
 		<tr>

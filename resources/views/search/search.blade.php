@@ -10,7 +10,7 @@
 	<form class="form" name="form">
 	  <div class="input-group">
 	    <div class="tagsinput-wrapper">
-	      <input id="search" name="search" type="text" class="form-control" value="{{ Input::get('search') }}" data-role="tagsinput" autocomplete="off" autofocus/>
+	      <input id="search" name="search" type="text" class="form-control" value="{{ Input::get('search') }}" autocomplete="off" autofocus/>
 	      <input type="hidden" name="serie"/>
 	    </div>
 	    <span class="input-group-btn">
@@ -31,6 +31,7 @@
             </span>  
 	    
 	  </div>
+	  <!-- <input id="testest" type="text" data-provide="typeahead">  -->
 	</form>
       </div>
     </div>
@@ -48,6 +49,7 @@
       <div class="row searchDiv">
 	<div class="col-md-1"></div> {{-- centering div --}}
 	<div class="col-md-10">
+	  <a href="{{ url('/profile/') }}/{{ $profil->id }}">
 	  <div class="col-md-2">
 	    @if ($profil->info_image != null)
 	      <img class="thumb-search" src="data:image/jpg;base64,{{ chunk_split(base64_encode($profil->info_image)) }}"/>
@@ -55,9 +57,10 @@
 	      <img data-src="holder.js/130x130/gray/text:photo de profil \n \n 130x130">
 	    @endif
 	  </div>
+	  </a>
 	  <div class="col-md-8">
 	    <div class="vcenter-plus">
-	      <p class="name">{{ $profil->prenom }} {{ $profil->name }}</p>
+	      <a href="{{ url('/profile/') }}/{{ $profil->id }}"><p class="name">{{ $profil->prenom }} {{ $profil->name }}</p></a>
 	      <p class="promo">
 		<a href="{{ url('/search?annee='.$profil->info_promo) }}">Promo {{ $profil->info_promo }}</a>
 		-
@@ -107,22 +110,26 @@
   }
   </script>
   <script src="http://rawgit.com/twitter/typeahead.js/master/dist/bloodhound.min.js"></script>
-  <script src="{{{ asset('/js/bootstrap3-typeahead.min.js') }}}" type="text/javascript"></script>
-  <script src="{{{ asset('/js/vendor/bootstrap-tagsinput.min.js') }}}" type="text/javascript"></script>
+  <script src="https://github.com/bassjobsen/Bootstrap-3-Typeahead/blob/master/bootstrap3-typeahead.min.js"></script>
+  <!-- <script src="{{{ asset('/js/bootstrap3-typeahead.min.js') }}}" type="text/javascript"></script> -->
+  <script src="{{{ asset('/js/vendor/bootstrap-tagsinput.js') }}}" type="text/javascript"></script>
   <script>
   jQuery(document).ready(function($) {
       var engine = new Bloodhound({
           remote: '/search/query?tags=%QUERY',
-          // '...' = displayKey: '...'
+         // '...' = displayKey: '...'
           datumTokenizer: Bloodhound.tokenizers.whitespace('info_tags'),
           queryTokenizer: Bloodhound.tokenizers.whitespace
       });
 
       engine.initialize();
 
-      $("#search").tagsinput({
-	  typeaheadjs: {
-	      item: 8,
+      $("#searchi").tagsinput({
+	  maxTags: 3,
+	  itemValue: 'id',
+	  itemText: 'tag',
+	  typeahead: {
+	      item: 8,	  
               hint: true,
 	      delay: 500,
 	      offset: false, // true = les suggestions doivent débuter par les caractères écrits
@@ -130,9 +137,10 @@
 	      compression: true,
               highlight: true,
               minLength: 2, // longueur minimale du mot considéré pour suggérer
-	      name: 'Tag_list',
-	      displayKey: 'info_tags',
-	      source: engine.ttAdapter(),
+	      //name: 'Tag_list',
+	      //displayKey: 'info_tags',
+	      //source: ['Amsterdam', 'Washington', 'Sydney', 'Beijing', 'Cairo'],//engine.ttAdapter(),
+	      remote: engine.ttAdaper,
 	      templates: {
 		  empty: [
 		      '<div class="empty-message">aucun <b>tag</b> correspondant</div>'
@@ -141,8 +149,17 @@
 	  }
       });
 
-  });
+      var type = ["Donor","Volunteer","Member","Resource","Follow-up","Friend"]; 
+      $('#testest').tagsinput({
+	  typeahead: {
+  	      source: function(query) {
+		  return $.getJSON('/search/query?tags=' + query);
+	      }
+	  }
+      });
 
+
+  });
 
   </script>
 @stop

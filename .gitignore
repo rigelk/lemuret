@@ -1,8 +1,18 @@
 # Laravel
-#####################
+######################
 /vendor
+/public
+bootstrap/cache/
+storage/
+.env.*.php
+.env.php
 .env
- 
+.env.example
+
+# Vinyl FTP credentials
+######################
+ftpconfig.js
+
 # Bower | Node
 ######################
 /resources/assets/bower
@@ -15,9 +25,8 @@
 ._*
 .Spotlight-V100
 .Trashes
-ehthumbs.db
+thumbs.db
 Thumbs.db
- 
  
 # Packages
 ######################
