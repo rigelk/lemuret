@@ -3,9 +3,8 @@
     <title>Le Muret</title>
 
     <link href="{{{ asset('/css/vendor.css') }}}" rel="stylesheet">
-    <link href="{{{ asset('/css/bootstrap.min.css') }}}" rel="stylesheet">
+    <link href="{{{ asset('/css/vendor/bootstrap.min.css') }}}" rel="stylesheet">
     <link href="{{{ asset('/css/home.css') }}}" rel="stylesheet">
-    <link href="{{{ asset('/css/search/typeahead.css') }}}" rel="stylesheet">
   </head>
   <body>
     <div class="home-background" style="background-image: url('img/muret{{ Auth::guest() ? '2' : '' }}.jpg')"></div>
@@ -16,7 +15,7 @@
 
 	<div class="navicon col-xs-12 col-lg-12 col-xs-push-6 col-lg-push-8">
 	  @if (!Auth::guest())
-	    <img src="img/avatar@2x.png" alt="Photo de profil">
+	    <img src="img/avatar@2x.png" alt="">
 	    <div id="menu">
 	      <ul>
 		<li class="drop">
@@ -103,11 +102,12 @@
 </html>
 
 <script src="{{{ asset('/js/vendor.js') }}}" type="text/javascript"></script>
-<script src="{{{ asset('/js/vendor/typeahead.bundle.js') }}}" type="text/javascript"></script>
-<script src="{{{ asset('/js/vendor/bootstrap-tagsinput.min.js') }}}" type="text/javascript"></script>
 <script src="{{{ asset('/js/jquery.scrolly.js') }}}" type="text/javascript"></script>
 <script>
-jQuery(document).ready(function($) {
+
+  jQuery(document).ready(function($) {
+
+    /**
     var engine = new Bloodhound({
         remote: '/search/query?tags=%QUERY',
         // '...' = displayKey: '...'
@@ -142,7 +142,7 @@ jQuery(document).ready(function($) {
                 '<div class="empty-message">aucun <b>tag</b> correspondant</div>'
             ]
         }
-    });
+    }); **/
 
     $('.parallax').scrolly({bgParallax: true});
 
