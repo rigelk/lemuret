@@ -1,6 +1,6 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
+    "name": "rigelk/lemuret",
+    "description": "Le Muret alumni portal for schools.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
@@ -16,10 +16,11 @@
         "opauth/twitter": "*",
 	"laracasts/flash": "~1.3",
         "gionnivaleriana/laravel-adminlte": "dev-master",
-        "caffeinated/shinobi": "~1.0" 
+        "caffeinated/shinobi": "~2.0",
+        "barryvdh/laravel-debugbar": "^2.0",
+        "mockery/mockery": "^0.9.4" 
     },
     "require-dev": {
-	"barryvdh/laravel-debugbar": "~2.0",
 	"phpunit/phpunit": "~4.0",
 	"phpspec/phpspec": "~2.1"
     },
@@ -39,7 +40,11 @@
     "scripts": {
 	"post-install-cmd": [
 	    "php artisan clear-compiled",
-	    "php artisan optimize"
+	    "php artisan optimize",
+	    "npm install",
+	    "bower install",
+	    "gulp",
+	    "cat readme-postinstall.md"
 	],
 	"post-update-cmd": [
 	    "php artisan clear-compiled",
