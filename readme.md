@@ -1,14 +1,34 @@
-## Le Muret Alumni
+## Le Muret
 
-Le Muret is a web application made for schools, bringing highschool back to networking and diversity with people you already know.
+[![Total Downloads](https://poser.pugx.org/rigelk/lemuret/d/total.svg)](https://packagist.org/packages/rigelk/lemuret)
+[![Latest Stable Version](https://poser.pugx.org/rigelk/lemuret/v/stable.svg)](https://packagist.org/packages/rigelk/lemuret)
+[![Latest Unstable Version](https://poser.pugx.org/rigelk/lemuret/v/unstable.svg)](https://packagist.org/packages/rigelk/lemuret)
+[![License](https://poser.pugx.org/rigelk/lemuret/license.svg)](https://packagist.org/packages/rigelk/lemuret)
+
+Le Muret is a web application made for schools to let them develop a community of alumnis, easily accessible and searchable through a modern web interface.
+
+![capture d ecran video de 20-11-2015 21_30_37](https://cloud.githubusercontent.com/assets/6329880/11312414/301179a2-8fd6-11e5-8f53-1545ee2dbe54.gif)
+
+The pool of alumnis is imported from a database or a mere `.csv` table. The admin interface provided for the school allow them to add new students in a clic.
+
+## Features
+
+- simple search through the alumnis
+- per-alumni profile with contact infos
+- sync option with LinkedIn profile
+- live suggestions based on input (typeahead)
+- internal mailbox
+- noob-proof administration interface
+- multiple data import types: `.csv`,`.dat`,`.xls`,`.ods` 
+- laravel 5.1 framework goodness
 
 ## Official Documentation
 
-Documentation can be found on the wiki provided on Github.
+Documentation can be found on the [wiki provided on Github](https://github.com/rigelk/lemuret/wiki).
 
 ## Contributing
 
-Thank you for considering contributing to Le Muret! Please fork and fill/answer the issue tracker.
+Thank you for considering contributing to Le Muret! To do so please fork and fill/answer the issue tracker.
 
 ### License
 
