@@ -29,3 +29,35 @@ $('.navbar-collapse ul li a').click(function() {
     $('.navbar-toggle:visible').click();
 });
 
+// Get the good info on page about releases
+$.get('https://api.github.com/repos/rigelk/lemuret/releases', function (data) {
+    if (data.length > 0) {
+	var releases = data.filter(function (release) {
+	    return !release.prerelease;
+	});
+	releases = releases.sort(function (v1, v2) {
+	    return Date.parse(v2.published_at) - Date.parse(v1.published_at);
+	});
+
+	if (releases[0]) {
+	    $('#download-button').attr('href', releases[0].url);
+	    $('#download-button').text('');
+	    $('#download-button').append('<i class="fa fa-download fa-fw"></i> ');
+	    $('#download-button').append(releases[0].tag_name);
+	    $('#download-legend').text('latest stable');
+	} else {
+	    $.get('https://api.github.com/repos/rigelk/lemuret/releases', function (latest) {
+		latest = latest.sort(function (v1, v2) {
+		    return Date.parse(v2.published_at) - Date.parse(v1.published_at);
+		});
+		$('#download-button').attr('href', latest[0].url);
+		$('#download-button').text('');
+		$('#download-button').append('<i class="fa fa-download fa-fw"></i> ');
+		$('#download-button').append(latest[0].tag_name);
+		$('#download-legend').text('prerelease');
+	    });
+	}
+    } else {
+	$('#download-button').text('No release so far');
+    }
+});
