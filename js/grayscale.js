@@ -40,7 +40,7 @@ $.get('https://api.github.com/repos/rigelk/lemuret/releases', function (data) {
 	});
 
 	if (releases[0]) {
-	    $('#download-button').attr('href', releases[0].url);
+	    $('#download-button').attr('href', releases[0].html_url);
 	    $('#download-button').text('');
 	    $('#download-button').append('<i class="fa fa-download fa-fw"></i> ');
 	    $('#download-button').append(releases[0].tag_name);
@@ -50,7 +50,7 @@ $.get('https://api.github.com/repos/rigelk/lemuret/releases', function (data) {
 		latest = latest.sort(function (v1, v2) {
 		    return Date.parse(v2.published_at) - Date.parse(v1.published_at);
 		});
-		$('#download-button').attr('href', latest[0].url);
+		$('#download-button').attr('href', latest[0].html_url);
 		$('#download-button').text('');
 		$('#download-button').append('<i class="fa fa-download fa-fw"></i> ');
 		$('#download-button').append(latest[0].tag_name);
