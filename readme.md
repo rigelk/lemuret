@@ -9,7 +9,7 @@ Le Muret is a web application made for schools to let them develop a community o
 
 ![capture d ecran video de 20-11-2015 21_30_37](https://cloud.githubusercontent.com/assets/6329880/11312414/301179a2-8fd6-11e5-8f53-1545ee2dbe54.gif)
 
-The pool of alumnis is imported from a database or a mere `.csv` table. The admin interface provided for the school allow them to add new students in a clic.
+The pool of alumnis is imported from a database or a spreadsheet The systems allows to invite users by batch, when they graduate. Students can register directly or with their Facebook, Twitter, LinkedIn or Google+ accounts, though manual activation of the profile by the administration is needed.
 
 ## Features
 
