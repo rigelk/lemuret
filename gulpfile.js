@@ -105,6 +105,11 @@ gulp.task('vendor-css', function(){
     ]).pipe(gulp.dest('./public/css/vendor/'));
 });
 
+gulp.task('css', function(){
+    gulp.src('./resources/assets/css/**/*')
+	.pipe(gulp.dest('./public/css/'));
+});
+
 gulp.task('fonts', function(){
     elixir(function(mix) {
 	mix.copy('vendor/almasaeed2010/adminlte/bootstrap/fonts','public/css/fonts');
@@ -127,6 +132,7 @@ gulp.task('js', function(){
 	    'resources/assets/bower/typeahead.js/dist/bloodhound.min.js',
 	    'resources/assets/bower/bootstrap3-typeahead/bootstrap3-typeahead.min.js',
 	    'resources/assets/bower/chartjs/Chart.js',
+	    'resources/assets/bower/tagsinput/dist/bootstrap-tagsinput.js',
 	    'resources/assets/js/',
 	], 'public/js'); // #1 = liste des sources, #2 = destination
 
@@ -149,7 +155,7 @@ gulp.task('js', function(){
     });
 });
 
-gulp.task('styles', ['bower','stylus','vendor-css','fonts']);
+gulp.task('styles', ['bower','stylus','vendor-css','css','fonts']);
 gulp.task('cots', ['styles','js']);
 gulp.task('default', ['images','cots']);
 

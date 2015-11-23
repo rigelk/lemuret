@@ -112,7 +112,7 @@
   <script src="http://rawgit.com/twitter/typeahead.js/master/dist/bloodhound.min.js"></script>
   <script src="https://github.com/bassjobsen/Bootstrap-3-Typeahead/blob/master/bootstrap3-typeahead.min.js"></script>
   <!-- <script src="{{{ asset('/js/bootstrap3-typeahead.min.js') }}}" type="text/javascript"></script> -->
-  <script src="{{{ asset('/js/vendor/bootstrap-tagsinput.js') }}}" type="text/javascript"></script>
+  <script src="{{{ asset('/js/bootstrap-tagsinput.js') }}}" type="text/javascript"></script>
   <script>
   jQuery(document).ready(function($) {
       var engine = new Bloodhound({

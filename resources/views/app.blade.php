@@ -70,9 +70,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/vendor.js') }}"></script>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link href="{{ asset('/css/bootstrap-tokenfield.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/bootstrap-social.css') }}" rel="stylesheet">
-    <script src="{{ asset('/js/vendor/bootstrap-tokenfield.min.js') }}"></script>
     
     @yield('content')
 
