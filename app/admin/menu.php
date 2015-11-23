@@ -16,9 +16,10 @@
  */
 
 Admin::menu()->url('/')->label('Panneau d’administration')->icon('fa-dashboard')->uses('\App\Http\Controllers\AdminController@getIndex');
-Admin::menu()->url('/messages')->label('Messagerie administrative')->icon('fa-envelope')->uses('\App\Http\Controllers\AdminController@getMessages');
+Admin::menu()->url('messages')->label('Messagerie administrative')->icon('fa-envelope')->uses('\App\Http\Controllers\AdminController@getMessages');
 Admin::menu()->label('Gestion des utilisateurs')->icon('fa-book')->items(function ()
 {
     Admin::menu('\App\User')->icon('fa-user');
 });
 Admin::menu()->url('database')->label('Base de données')->icon('fa-database')->uses('\App\Http\Controllers\AdminController@dataIndex');
+Admin::menu()->url('config')->label('Configuration')->icon('fa-gears')->uses('\App\Http\Controllers\AdminController@getConfig');

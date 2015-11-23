@@ -45,5 +45,14 @@ class AdminController extends \SleepingOwl\Admin\Controllers\AdminController {
     {
 	return view('admin.data');
     }
-    
+
+    public function getConfig()
+    {
+	return view('admin.config');
+    }
+
+    public function getMessages()
+    {
+	return view('admin.messages');
+    }
 }
