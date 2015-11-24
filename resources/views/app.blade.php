@@ -7,7 +7,6 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Le Muret</title>
 
-      <link href="{{ asset('/css/vendor.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/vendor/bootstrap.min.css') }}" rel="stylesheet">
       <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
       
@@ -69,7 +68,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/vendor.js') }}"></script>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="{{ asset('/css/vendor/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/bootstrap-social.css') }}" rel="stylesheet">
     
     @yield('content')
