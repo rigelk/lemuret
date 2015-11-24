@@ -165,6 +165,11 @@ return [
 		 * Roles
 		 */
 		'Caffeinated\Shinobi\ShinobiServiceProvider',
+
+		/*
+		 * Installer
+		 */
+		App\Providers\LemuretInstallerServiceProvider::class
 		
 	],
 

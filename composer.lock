@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "17f65d945175ad29f59b5158bc779faa",
+    "hash": "7f671a966ebe739aacd46c24d335ed5e",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -102,16 +102,16 @@
         },
         {
             "name": "caffeinated/shinobi",
-            "version": "v2.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/caffeinated/shinobi.git",
-                "reference": "eb2eb4766e9502842845a0c59108fa289f6a4e77"
+                "reference": "a8d1c725965f4fc6a377d4636ee2876ea5daf833"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/caffeinated/shinobi/zipball/eb2eb4766e9502842845a0c59108fa289f6a4e77",
-                "reference": "eb2eb4766e9502842845a0c59108fa289f6a4e77",
+                "url": "https://api.github.com/repos/caffeinated/shinobi/zipball/a8d1c725965f4fc6a377d4636ee2876ea5daf833",
+                "reference": "a8d1c725965f4fc6a377d4636ee2876ea5daf833",
                 "shasum": ""
             },
             "require": {
@@ -154,7 +154,7 @@
                 "roles",
                 "shinobi"
             ],
-            "time": "2015-06-13 20:32:30"
+            "time": "2015-09-02 02:37:00"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -2724,6 +2724,39 @@
                 "shell"
             ],
             "time": "2015-11-12 16:18:56"
+        },
+        {
+            "name": "rachidlaasri/laravel-installer",
+            "version": "1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RachidLaasri/LaravelInstaller.git",
+                "reference": "cb8f917e49b94b7377a26b326521f0af826d428a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RachidLaasri/LaravelInstaller/zipball/cb8f917e49b94b7377a26b326521f0af826d428a",
+                "reference": "cb8f917e49b94b7377a26b326521f0af826d428a",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RachidLaasri\\LaravelInstaller\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rachid Laasri",
+                    "email": "rashidlaasri@gmail.com"
+                }
+            ],
+            "description": "Laravel web installer",
+            "time": "2015-09-28 17:20:25"
         },
         {
             "name": "sleeping-owl/admin",

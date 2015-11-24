@@ -90,6 +90,9 @@ gulp.task('vendor-css', function(){
     gulp.src('./resources/assets/bower/bootstrap/dist/css/bootstrap.min.css')
 	.pipe(gulp.dest('./public/css/vendor/'));
 
+    gulp.src('./resources/assets/bower/font-awesome/css/font-awesome.min.css')
+	.pipe(gulp.dest('./public/css/vendor/'));
+    
     gulp.src('vendor/sleeping-owl/admin/public/all.min.css')
 	.pipe(gulp.dest('./public/css/vendor/'));
 
